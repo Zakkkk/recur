@@ -1,0 +1,1 @@
+Start server with `npx shadow-cljs clj-repl` followed by `(require 'repl)` and `(repl/go)`
