@@ -1,7 +1,14 @@
 {:paths ["src/main" "src/dev"]
+
  :deps {thheller/shadow-cljs {:mvn/version "3.2.1"}
         reagent/reagent {:mvn/version "2.0.1"}
         cljs-http/cljs-http {:mvn/version "0.1.49"}
         ring/ring-jetty-adapter {:mvn/version "1.15.3"}
         metosin/reitit {:mvn/version "0.9.2"}
-        compojure/compojure {:mvn/version "1.7.2"}}}
+        compojure/compojure {:mvn/version "1.7.2"}}
+
+ :aliases {:test {:extra-paths ["test/main"]
+                  :extra-deps {io.github.cognitect-labs/test-runner
+                               {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+                  :main-opts ["-m" "cognitect.test-runner"]
+                  :exec-fn cognitect.test-runner.api/test}}}

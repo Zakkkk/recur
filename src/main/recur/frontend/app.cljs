@@ -6,13 +6,26 @@
             [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]))
 
+(defonce button-text (r/atom "Send post!"))
+
 (defn my-element []
   [:div
-   [:button {:on-click #(http/post "/api/test" {:edn-params {:foo :bar}})}
-    "Send post request!"]])
+   [:button {:on-click
+             (fn []
+               (let [date (js/Date.)]
+                 (go (reset!
+                      button-text
+                      (:body (<! (http/post
+                                  "/api/get-tasks"
+                                  {:edn-params {:year (.getFullYear date)
+                                                :month (inc (.getMonth date))
+                                                :day (.getDate date)
+                                                :hour (.getHours date)
+                                                :minute (.getMinutes date)
+                                                :timezone (/ (.getTimezoneOffset date) -60)}})))))))}
+    @button-text]])
 
 (defonce root (delay (rdc/create-root (.getElementById js/document "app"))))
 
 (defn init []
-  (rdc/render @root [my-element])
-  (println "helloworld"))
+  (rdc/render @root [my-element]))

@@ -10,10 +10,8 @@
    :body "hello world from my-handler"})
 
 (cc/defroutes app-routes
-  (cc/POST "/api/test" req
-    (comment "this line wont run unless i restart the whole server")
-    (println "new!")
-    ;; (println (:body req))
+  (cc/POST "/api/get-tasks" req
+    (println (slurp (:body req)))
     {:status 200
      :headers {"content-type" "text/plain"}
      :body "hello world response"}))
