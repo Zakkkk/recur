@@ -7,27 +7,28 @@
 
 (defonce tasks (r/atom ""))
 
-(defn Home []
+(defn my-element []
   [:div
-   [:h2 "Home"]
-   (Link {:href "/signin"} "Go to sign in")
+   [:button {:on-click
+             (fn []
+               (let [date (js/Date.)]
+                 (go (reset!
+                      tasks
+                      (:body (<! (http/post
+                                  "/api/get-tasks"
+                                  {:edn-params {:year (.getFullYear date)
+                                                :month (inc (.getMonth date))
+                                                :day (.getDate date)
+                                                :hour (.getHours date)
+                                                :minute (.getMinutes date)
+                                                :timezone (/ (.getTimezoneOffset date) -60)}})))))))}
+    "Request Tasks from the last week!"]
+
    [:div @tasks]])
 
-(comment (defn my-element []
-           [:div
-            [:button {:on-click
-                      (fn []
-                        (let [date (js/Date.)]
-                          (go (reset!
-                               tasks
-                               (:body (<! (http/post
-                                           "/api/get-tasks"
-                                           {:edn-params {:year (.getFullYear date)
-                                                         :month (inc (.getMonth date))
-                                                         :day (.getDate date)
-                                                         :hour (.getHours date)
-                                                         :minute (.getMinutes date)
-                                                         :timezone (/ (.getTimezoneOffset date) -60)}})))))))}
-             "Request Tasks from the last week!"]
-
-            [:div @tasks]]))
+(defn Home []
+  [:div
+   [:h2.py-6 "Home"]
+   (Link {:href "/signin"} "Go to sign in")
+   [:hr]
+   (my-element)])

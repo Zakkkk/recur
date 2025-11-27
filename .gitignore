@@ -6,3 +6,4 @@
 node_modules
 .nrepl-port
 public/js/*
+**/.DS_Store

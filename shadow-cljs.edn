@@ -2,5 +2,3 @@
  :builds {:frontend {:target :browser
                      :modules {:main {:init-fn recur.frontend.app/init}}
                      :devtools {:watch-dir "public"}}}}
-
-
