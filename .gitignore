@@ -6,4 +6,5 @@
 node_modules
 .nrepl-port
 public/js/*
+target
 **/.DS_Store

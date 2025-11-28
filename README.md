@@ -1,6 +1,6 @@
 A modern task management service.
 
-Start development server with `npx shadow-cljs clj-repl` followed by `(require 'repl)` and `(repl/go)`
+Start development server with `npx shadow-cljs clj-repl` followed by `(require 'repl)` and `(repl/go)`. To get all js libraries bundled run `npm run build:dev`
 
 ## License
 

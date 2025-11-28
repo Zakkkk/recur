@@ -1,12 +1,14 @@
 (ns recur.frontend.app
   (:require
    [reagent.dom.client :as rdc]
-   [recur.frontend.router]))
+   [recur.frontend.router]
+   ["@adobe/react-spectrum" :refer [defaultTheme Provider]]))
 
 (defn main-view []
-  (let [comp (get-in @recur.frontend.router/current-route [:data :component])]
-    (when comp
-      [comp])))
+  [:> Provider {:theme defaultTheme}
+   (let [comp (get-in @recur.frontend.router/current-route [:data :component])]
+     (when comp
+       [comp]))])
 
 (defonce root (delay (rdc/create-root (.getElementById js/document "app"))))
 

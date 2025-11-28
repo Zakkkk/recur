@@ -1,4 +1,4 @@
-(ns recur.frontend.components.link
+(ns recur.frontend.components.Link
   (:require
    [reitit.frontend.easy :as rfe]))
 

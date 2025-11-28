@@ -2,16 +2,16 @@
   (:require [reagent.core :as r]
             [reitit.frontend :as rf]
             [reitit.frontend.easy :as rfe]
-            [recur.frontend.views.home]
-            [recur.frontend.views.signin]))
+            [recur.frontend.views.Home]
+            [recur.frontend.views.Signin]))
 
 (def routes
   [{:name :home
     :path "/"
-    :component #'recur.frontend.views.home/Home}
+    :component #'recur.frontend.views.Home/Home}
    {:name :signin
     :path "/signin"
-    :component #'recur.frontend.views.signin/Signin}])
+    :component #'recur.frontend.views.Signin/Signin}])
 
 (def route-table
   (mapv (fn [{:keys [path name component]}]

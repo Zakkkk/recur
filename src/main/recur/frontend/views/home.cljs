@@ -1,9 +1,9 @@
-(ns recur.frontend.views.home
+(ns recur.frontend.views.Home
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as r]
             [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
-            [recur.frontend.components.link :refer [Link]]))
+            [recur.frontend.components.Link :refer [Link]]))
 
 (defonce tasks (r/atom ""))
 
@@ -28,7 +28,11 @@
 
 (defn Home []
   [:div
-   [:h2.py-6 "Home"]
-   (Link {:href "/signin"} "Go to sign in")
+   [:h2 "Home"]
+   (Link {:href "/signin"} "Go to sign in!")
    [:hr]
+   [:hr]
+   ;; [:> Button "hello"]
+   [:br]
+   ;;(Button {:class "add onto"} "hello world")
    (my-element)])
